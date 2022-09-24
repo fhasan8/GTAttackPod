@@ -9,6 +9,7 @@ import time
 if __name__ == '__main__':
     dataset = CIFAR10Dataset()
     model = CIFAR10_densenet40(rel_path='./')
+    print(len(model.layers))
     X_test, Y_test, Y_test_target_ml, Y_test_target_ll = get_data_subset_with_systematic_attack_labels(dataset=dataset,
                                                                                                        model=model,
                                                                                                        balanced=True,
@@ -23,4 +24,4 @@ if __name__ == '__main__':
     print("\n---Statistics of FGSM Attack (%f seconds per sample)" % dur_per_sample)
     evaluate_adversarial_examples(X_test=X_test, Y_test=Y_test,
                                   X_test_adv=X_test_adv, Y_test_adv_pred=model.predict(X_test_adv),
-                                  Y_test_target=Y_test, targeted=False)
+                                  Y_test_target=Y_test, targeted=True)

@@ -1,6 +1,7 @@
 from keras.datasets import mnist
 from keras.utils import np_utils
-
+import numpy as np
+import tensorflow as tf
 
 class MNISTDataset:
     def __init__(self):
@@ -30,3 +31,13 @@ class MNISTDataset:
         del X_train, y_train, X_test, y_test
 
         return X_val, Y_val
+
+    def get_train_dataset(self):
+        (x_train, y_train), (_, _) = tf.keras.datasets.mnist.load_data()
+        x_train = np.expand_dims(x_train, axis=-1)
+        x_train = np.repeat(x_train, 3, axis=-1)
+        x_train = x_train.astype('float32') / 255
+        x_train = tf.image.resize(x_train, [32,32]) # if we want to resize 
+        y_train = tf.keras.utils.to_categorical(y_train , num_classes=10)
+
+        return x_train, y_train

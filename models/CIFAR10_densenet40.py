@@ -26,6 +26,7 @@ def CIFAR10_densenet40(use_softmax=True, rel_path='./'):
     model = Model(inputs, x, name='CIFAR10_densenet40')
     model.load_weights(os.path.join('%smodels/weights' % rel_path, "CIFAR10_densenet.keras_weights.h5"))
     model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['acc'])
+    print(len(model.layers))
     return model
 
 
