@@ -43,4 +43,4 @@ if __name__ == '__main__':
     print("\n---Statistics of FGSM Attack (%f seconds per sample)" % dur_per_sample)
     evaluate_adversarial_examples(X_test=X_test, Y_test=Y_test,
                                   X_test_adv=X_test_adv, Y_test_adv_pred=model.predict(X_test_adv),
-                                  Y_test_target=Y_test, targeted=False)
+                                  Y_test_target=Y_test, targeted=True)
