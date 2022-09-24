@@ -191,15 +191,5 @@ def vgg_model():
 
     model = Model(base_model.input, pred)
 
-    # set the base model's layers to non-trainable
-    # uncomment next two lines if you don't want to
-    # train the base model
-    # for layer in base_model.layers:
-    #     layer.trainable = False
-
-    # compile the model with a SGD/momentum optimizer
-    # and a very slow learning rate.
-
-    # save the model
     model.load_weights(os.path.join('./models/weights','cifar10-vgg16_model_alllayers.h5'))
     return model

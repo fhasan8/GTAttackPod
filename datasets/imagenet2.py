@@ -16,19 +16,18 @@ class Imagenet2:
         self.num_classes = 1000
 
     def get_test_dataset(self):
-        imagenet = tfds.image.Imagenet2012()
-        
+        imagenet = tfds.load('imagenet2012', split='validation', data_dir = '/Users/fhasan8/tensorflow_datasets/downloads/manual',
+                                             download=False, shuffle_files=True,
+                                             as_supervised=True, with_info=True)
         imagenet.download_and_prepare()
-
-        datasets = imagenet.as_dataset()
+        # Download the data, prepare it, and write it to disk
         C = imagenet.info.features['label'].num_classes
         Nvalidation = imagenet.info.splits['validation'].num_examples
         Nbatch = 32
         assert C == 1000
         assert Nvalidation == 50000
 
-        # Download the data, prepare it, and write it to disk
-        imagenet.download_and_prepare()
+        
 
         # Load data from disk as tf.data.Datasets
         validation_dataset =  datasets['validation']

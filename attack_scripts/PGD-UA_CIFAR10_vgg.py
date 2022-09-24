@@ -8,7 +8,7 @@ import time
 
 if __name__ == '__main__':
     dataset = CIFAR10Dataset()
-    model = CIFAR10_densenet40(rel_path='./')
+    model = vgg_model()
     X_test, Y_test, Y_test_target_ml, Y_test_target_ll = get_data_subset_with_systematic_attack_labels(dataset=dataset,
                                                                                                        model=model,
                                                                                                        balanced=True,
